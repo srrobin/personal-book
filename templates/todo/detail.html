@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+
+ {% block content%}
+  <div class="topsecond-area">
+					<div class="add-title">
+					  <h3>TODO DETAIL PAGE </h3>
+					</div>
+
+                     <div class="detail-page">
+					    <div class="title-btn">Task Title <span class="glyphicon glyphicon-menu-down"></span></div>
+
+                          <h3>{{todo.task_title | upper}}</h3>
+                           <span class="todo-btn2">create at ::: {{todo.date}}</span>
+                           <span class="todo-btn2">action time ::: {{todo.reminder}}</span>
+                           <span class="todo-btn2">importence level ::: {{todo.ctg}}</span>
+                           <p>
+							 {{todo.task_des}}
+						   </p>
+
+                      </div>
+					  <div class="right-btn"><a href="{% url 'todoHome' %}">Back Todo  <span class="glyphicon glyphicon-share-alt"></span></a> </div>
+                    </div>
+
+
+ {% endblock %}

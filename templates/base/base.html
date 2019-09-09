@@ -1,0 +1,39 @@
+{% load static %}
+
+
+<html lang="en">
+    {% include 'base/header.html' %}
+	<body>
+		<div class="wrapper">
+			<div class="container">
+			   <div class="main-body new-bg">
+			   <h2>Personal Book</h2>
+				   <div class="nav-bg">
+					{% if user.is_authenticated %}
+					 <a href="{% url 'logout' %}"  class="btn  btn-xs" role="button">Logout</a>
+					 <a href="{% url 'password_change' %}"  class="btn  btn-xs" role="button" >password change </a>
+
+					   {% else %}
+
+				      <a href="{% url 'signup' %}" class="btn  btn-xs" role="button">Signup</a>
+                      <a href="{% url 'login' %}" class="btn  btn-xs" role="button">Login</a>
+
+					   {% endif %}
+				   </div>
+			      <div class="second-layer new-bg">
+
+					  {% include 'base/main-menu.html' %}
+
+
+				      {% block content %}
+					  {% endblock %}
+
+				  </div>
+			   </div>
+			</div>
+		</div>
+	</body>
+</html>
+
+
+

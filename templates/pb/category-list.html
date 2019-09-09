@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+
+
+                {% block content %}
+
+
+					<div class="row t10">
+						<div class="col-lg-12">
+							<div class="btn-toolbar">
+								<div class="btn-group">
+									<a  class="todo-btn" href="{% url 'add-pn' %}" > ADD PHONE NUMBER</a>
+								</div>
+								<div class="btn-group">
+									<a class="todo-btn" href="{% url 'home3' %}"> PHONE NUMBER LIST </a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="row t10">
+						<div class="col-lg-12">
+							<div class="btn-toolbar">
+                                {% for ctg in ctgs %}
+								<div class="btn-group">
+									<a  class="todo-btn3" href="{% url 'home3' %}" > {{ctg.title}}</a>
+								</div>
+                                {% endfor %}
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+                {% endblock %}

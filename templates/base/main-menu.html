@@ -1,0 +1,12 @@
+{% load static %}
+
+<div class="top-area">
+			<a href="{% url 'todoHome' %}" class="btn btn-xs btn-success {{ todo_page }}">
+			<span class="glyphicon glyphicon-calendar"></span> TODO </a>
+			<a href="{% url 'home2' %}" class="btn btn-xs btn-success {{ dairy_page }}">
+			<span class="glyphicon glyphicon-calendar"></span> DAIRY</a>
+			<a href="{% url 'home3' %}" class="btn btn-xs btn-success {{ phone_page }}">
+			<span class="glyphicon glyphicon-calendar"></span> PHONEBOOK</a>
+			<a href="{% url 'home4' %}" class="btn btn-xs btn-success {{img_page}}">
+			<span class="glyphicon glyphicon-calendar"></span> ALBAM</a>
+</div>

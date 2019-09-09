@@ -1,0 +1,51 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<div class="topsecond-area">
+<div class="line"></div>
+    <div class="app-menu">
+        <a href="{% url 'add-album' %}" class="btn btn-xs btn-success">
+        <span class="glyphicon glyphicon-calendar"></span> ADD IMAGE</a>
+    </div>
+    <div class="line"></div>
+   {% for user in users %}
+     {%  if user.img %}
+        <div class="gallery"><a target="_blank" href="{{ user.img.url }}">
+            <img src="{{ user.img.url }}" alt="{{ user.title }}" width="100" height="100"> </a>
+            <div class="desc">
+                <div class="title">about image</div>
+                {{ user.title | truncatewords:8 }}
+                <p><a class="a-btn" href="{% url 'album_detail' user.pk %}">details</a><a class="a-btn" href="{% url 'delete_diary' user.pk %}">delete</a><a class="a-btn" href="{% url 'edit_album' user.pk %}">edit</a>
+                </p>
+            </div>
+        </div>
+     {% endif%}
+    {% endfor %}
+    <div class="line"></div>
+
+    <div class="app-pagi">
+     {% if users.has_other_pages %}
+    <ul class="pagination pagination-sm">
+
+        {% if users.has_previous %}
+        <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+        {% endif %} {% for i in users.paginator.page_range %} {% if users.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span>
+        </li>
+        {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %} {% endfor %} {% if users.has_next %}
+        <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+
+    </ul>
+    {% endif %}
+    </div>
+
+</div>
+<!---end topsecond --->
+{% endblock %}

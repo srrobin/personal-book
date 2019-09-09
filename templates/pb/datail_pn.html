@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+
+
+ {% block content%}
+<div class="topsecond-area">
+					<div class="add-title">
+					  <h3>PB. DETAIL PAGE </h3>
+					</div>
+
+                     <div class="detail-page">
+					    <div class="pb-img">
+                            {% if pn.image %}
+                               <img src="{{pn.image.url}}" alt="{{pn.name}}" />
+                            {% else %}
+                               <span class="text-muted">No Image</span>
+                            {% endif %}
+                        </div>
+                          <h3>{{pn.name}}</h3>
+                           <span class="todo-btn2">Category::: {{pn.category}}</span>
+                            <p><span class="glyphicon glyphicon-phone-alt" ></span> Personal Number::: {{pn.personal_number}}</p>
+                            <p><span class="glyphicon glyphicon-phone-alt" ></span> Home Number::: {{pn.home_number}}</p>
+                            <p><span class="glyphicon glyphicon-phone-alt" ></span> Office  Number::: {{pn.office_number}}</p>
+                            <p><span class="glyphicon glyphicon-phone-alt" ></span> Email   Number::: {{pn.email}}</p>
+                            <div class="title-btn">Details About Person <span class="glyphicon glyphicon-menu-down" ></span></div>
+                           <p>
+							 {{pn.about_person}}
+						   </p>
+
+                      </div>
+					  <div class="right-btn"><a href="{% url 'home3' %}">Back Todo  <span class="glyphicon glyphicon-share-alt"></span></a> </div>
+                    </div>
+
+
+ {% endblock %}

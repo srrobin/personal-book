@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+
+ {% block content%}
+<div class="topsecond-area">
+					<div class="add-title">
+					  <h3>ALBUM DETAIL PAGE </h3>
+					</div>
+
+                     <div class="detail-page">
+					    <div class="pb-img">
+                            {% if album.img %}
+                               <img src="{{album.img.url}}" alt="" />
+                            {% else %}
+                               <span class="text-muted">No Image</span>
+                            {% endif %}
+                        </div>
+                          <p>{{album.title}}</p>
+
+
+                      </div>
+					  <div class="right-btn"><a href="{% url 'home4' %}">Back Album  <span class="glyphicon glyphicon-share-alt"></span></a> </div>
+                    </div>
+
+
+ {% endblock %}

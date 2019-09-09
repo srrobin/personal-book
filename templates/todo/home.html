@@ -1,0 +1,74 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<div class="topsecond-area">
+<div class="line"></div>
+    <div class="app-menu">
+        <a href="{% url 'todo-add' %}" class="btn btn-xs btn-success">
+        <span class="glyphicon glyphicon-calendar"></span> ADD TODO </a>
+    <a href="{% url 'deleteCompleted' %}" class="btn btn-xs btn-success">
+        <span class="glyphicon glyphicon-calendar"></span> DELETE COMPLETED</a>
+    <a href="{% url 'deleteAll' %}" class="btn btn-xs btn-success">
+        <span class="glyphicon glyphicon-calendar"></span> DELETE ALL </a>
+
+    </div>
+    <table class="table">
+        {% for users in users %}
+          {% if users.completed %}
+        <tr class="table-secondary">
+            <td><span class="completed todo-title">{{users.task_title| upper | truncatewords:6 }}</span> <span class="date">Date:::{{users.date}}</span>
+                <br>
+                <div class="btn1">
+                    <a href="{% url 'uncross' users.id %}" class="a-btn"><span class="glyphicon glyphicon-flash"></span> uncross</a>
+                    <a href="{% url 'todo-detail' users.id %}" class="a-btn"><span class="glyphicon glyphicon-flash"></span> detail</a>
+                    <a href="{% url 'todo-edit' users.id %}" class="a-btn"><span class="glyphicon glyphicon-flash"></span> edit</a>
+                </div>
+            </td>
+            <td><span class="todo-btn3">{{users.reminder}}</span>
+                <br> <span class="todo-btn3">{{users.ctg}}</span></td>
+        </tr>
+        {% else %}
+        <tr class="table-secondary">
+            <td><span class="todo-title">{{users.task_title| upper | truncatewords:6}}</span> <span class="date">Date:::{{users.date}}</span>
+                <br>
+                <div class="btn1">
+                    <a href="{% url 'cross-off' users.id %}" class="a-btn"><span class="glyphicon glyphicon-flash"></span> Cross Off</a>
+                    <a href="{% url 'todo-detail' users.id %}" class="a-btn"><span class="glyphicon glyphicon-flash"></span> detail</a>
+                    <a href="{% url 'todo-edit' users.id %}" class="a-btn"><span class="glyphicon glyphicon-flash"></span> edit</a>
+                </div>
+            </td>
+            <td><span class="todo-btn3">{{users.reminder}}</span>
+                <br> <span class="todo-btn3">{{users.ctg}}</span></td>
+        </tr>
+        {% endif %} {% endfor %}
+
+    </table>
+
+    <div class="line"></div>
+
+    <div class="app-pagi">
+     {% if users.has_other_pages %}
+    <ul class="pagination pagination-sm">
+
+        {% if users.has_previous %}
+        <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+        {% endif %} {% for i in users.paginator.page_range %} {% if users.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span>
+        </li>
+        {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %} {% endfor %} {% if users.has_next %}
+        <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+
+    </ul>
+    {% endif %}
+    </div>
+
+</div>
+<!---end topsecond --->
+{% endblock %}

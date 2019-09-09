@@ -1,0 +1,58 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<div class="topsecond-area">
+    <div class="line"></div>
+    <div class="app-menu">
+    <a href="{% url 'add-diary' %}" class="btn btn-xs btn-success">
+         <span class="glyphicon glyphicon-calendar"></span>ADD NEW ENTRY</a>
+
+    <a href="#" class="btn btn-xs btn-success">
+         <span class="glyphicon glyphicon-calendar"></span>new button</a>
+
+</div>
+    <table class="table">
+        {% for user in users %}
+        <tr class="table-secondary">
+            <td> <span class="todo-title">{{user.name | upper | truncatewords:6}}</span><br> <span class="date">create:::{{user.date}}</span>
+                <br>
+                <div class="btn1">
+                    <a href="{% url 'detail-diary' user.id %}" class="a-btn"><span class="glyphicon glyphicon-flash"></span> detail</a>
+                    <a href="{% url 'edit-diary' user.id %}" class="a-btn"><span class="glyphicon glyphicon-flash"></span> edit</a>
+                    <a href="{% url 'delete-diary' user.id %}" class="a-btn"><span class="glyphicon glyphicon-flash"></span> delete</a>
+                </div>
+            </td>
+            <td><span class="todo-btn3">{{user.diary_ctg}}</span></td>
+        </tr>
+        {% endfor%}
+    </table>
+
+
+    <div class="line"></div>
+
+<div class="app-pagi">
+    {% if users.has_other_pages %}
+    <ul class="pagination pagination-sm">
+
+        {% if users.has_previous %}
+        <li><a href="?page={{ users.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+        {% endif %} {% for i in users.paginator.page_range %} {% if users.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span>
+        </li>
+        {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+        {% endif %} {% endfor %} {% if users.has_next %}
+        <li><a href="?page={{ users.next_page_number }}">&raquo;</a></li>
+        {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+
+    </ul>
+    {% endif %}
+</div>
+
+</div>
+
+{% endblock %}

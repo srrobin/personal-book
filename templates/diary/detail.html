@@ -1,0 +1,25 @@
+{% extends 'base/base.html' %}
+
+
+ {% block content%}
+<div class="topsecond-area">
+					<div class="add-title">
+					  <h3>DIARY DETAIL PAGE </h3>
+					</div>
+
+                     <div class="detail-page">
+					    <div class="title-btn">Diary Title <span class="glyphicon glyphicon-menu-down"></span></div>
+
+                          <h3>{{diary.name}}</h3>
+                           <span class="todo-btn2">create at :::{{diary.date}}</span>
+						   <span class="todo-btn2">Category:::{{diary.diary_ctg}}</span>
+                           <p>
+						    {{diary.diary_text}}
+						   </p>
+
+                      </div>
+					  <div class="right-btn"><a href="{% url 'home2' %}">Back Todo  <span class="glyphicon glyphicon-share-alt"></span></a> </div>
+                    </div>
+
+
+ {% endblock %}
